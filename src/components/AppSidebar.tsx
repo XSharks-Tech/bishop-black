@@ -60,7 +60,7 @@ const navigationItems = [
 ];
 
 export function AppSidebar() {
-  const { state } = useSidebar();
+  const { state, setOpen } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
   const isCollapsed = state === 'collapsed';
@@ -80,10 +80,16 @@ export function AppSidebar() {
     return `${baseClasses} ${isActive(path) ? activeClasses : inactiveClasses}`;
   };
 
+  const handleItemClick = () => {
+    // Sempre expandir quando um item for clicado
+    setOpen(true);
+  };
+
   return (
     <Sidebar 
       className="border-r border-sidebar-border bg-sidebar shadow-xl" 
       collapsible="icon"
+      defaultOpen={false}
     >
       <SidebarContent className="py-4">
         <SidebarGroup>
@@ -99,6 +105,7 @@ export function AppSidebar() {
                     <NavLink 
                       to={item.url} 
                       className={getNavClasses(item.url)}
+                      onClick={handleItemClick}
                     >
                       <item.icon className="h-5 w-5 flex-shrink-0 z-10" />
                       {!isCollapsed && (
