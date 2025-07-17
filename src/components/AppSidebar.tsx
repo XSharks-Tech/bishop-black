@@ -89,7 +89,6 @@ export function AppSidebar() {
     <Sidebar 
       className="border-r border-sidebar-border bg-sidebar shadow-xl" 
       collapsible="icon"
-      defaultOpen={false}
     >
       <SidebarContent className="py-4">
         <SidebarGroup>
